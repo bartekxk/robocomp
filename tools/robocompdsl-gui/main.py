@@ -223,9 +223,12 @@ class RobocompDslGui(QMainWindow):
 
 		self._dir_button = QPushButton("Select directory")
 		self._dir_button.clicked.connect(self.set_output_directory)
+		self._dir_button_file_opener = QPushButton("Open file")
+		self._dir_button_file_opener.clicked.connect(self.set_input_file)
 		self._dir_layout = QHBoxLayout()
 		self._dir_layout.addWidget(self._dir_line_edit)
 		self._dir_layout.addWidget(self._dir_button)
+		self._dir_layout.addWidget(self._dir_button_file_opener)
 
 		# LIST OF ROBOCOMP INTERFACES
 		self._interface_list = QListWidget()
@@ -395,6 +398,12 @@ class RobocompDslGui(QMainWindow):
 			if self.check_dir_is_empty(str(dir)):
 				self._dir_line_edit.setText(dir)
 				dir_set = True
+
+	def set_input_file(self):
+		path=ROBOCOMP+"/components/robocomp-robolab/components"
+		file_path = QFileDialog.getOpenFileName(QFileDialog(), "Select File", path,"cdsl(*.cdsl)")
+		file_text = open(str(file_path[0])).read()
+		self._editor.setText(file_text)
 
 	def write_cdsl_file(self):
 		component_dir = str(self._dir_line_edit.text())
