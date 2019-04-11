@@ -10,42 +10,34 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - cmake
             - g++
-            - libgsl-dev
+            - zeroc-ice
+            - libzeroc-ice-dev
+            - slice2cpp
+            - libopencv-dev
+            - libgsl0-dev
             - libopenscenegraph-dev
-            - cmake-qt-gui
-            - zeroc-ice-all-dev
             - freeglut3-dev
-            - libboost-system-dev 
+            - libboost-system-dev
             - libboost-thread-dev
             - qt4-dev-tools
-            - python-pip
-            - python-pyparsing
-            - python-numpy
-            - python-pyside
             - pyside-tools
             - libxt-dev
-            - libboost-test-dev
-            - libboost-filesystem-dev
-            - python-libxml2
-            - python-xmltodict
+            - pyqt4-dev-tools
+            - libboost-all-dev
+            - libccd
             - libccd-dev
-            - python-zeroc-ice
-            - zeroc-ice-all-runtime
+            - libflann-dev
 
       env: COMPILER=g++
 
 before_install:
   - sudo apt-get update -qq
-  - sudo pip install networkx
-# Commands to try and fix check failures
+  - sudo apt-get install -y slice2cpp
 #  - sudo rm /var/lib/apt/lists/lock
 #  - sudo rm /var/cache/apt/archives/lock
 #  - sudo rm /var/lib/dpkg/lock
 
 script:
   - export ROBOCOMP="/home/travis/build/robocomp/robocomp"
-  - cmake .
-  - make
-  - sudo make install
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DFCL_SUPPORT=1 . && make
