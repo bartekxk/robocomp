@@ -28,6 +28,8 @@ matrix:
             - libccd
             - libccd-dev
             - libflann-dev
+            - python-zeroc-ice
+            - zeroc-ice-all-runtime
 
       env: COMPILER=g++
 
