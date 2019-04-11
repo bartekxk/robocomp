@@ -46,8 +46,6 @@ before_install:
 
 script:
   - export ROBOCOMP="/home/travis/build/robocomp/robocomp"
-  - mkdir build
-  - cd build
-  - cmake ..
+  - cmake .
   - make
   - sudo make install
