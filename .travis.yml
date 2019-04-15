@@ -39,7 +39,9 @@ before_install:
  # - sudo rm /var/lib/dpkg/lock
 
 script:
-  - sudo ls /home/travis/build/robocomp/robocomp
+  - sudo cd /home/travis/build/robocomp/robocomp
+  - ls
+  - cd
  # - sudo chmod 777 /home/travis/build/robocomp/robocomp/cmake/robocompLocal.cmake
   - export ROBOCOMP="/home/travis/build/robocomp/robocomp"
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DFCL_SUPPORT=1 . && make
