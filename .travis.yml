@@ -11,7 +11,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++
-            - zeroc-ice
+            - python-zeroc-ice
+            - zeroc-ice-all-runtime
+            - zeroc-ice-all-dev
             - libzeroc-ice-dev
             - slice2cpp
             - libopencv-dev
