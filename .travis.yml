@@ -32,7 +32,6 @@ matrix:
       env: COMPILER=g++
 
 before_install:
-  - sudo chmod 777 /home/travis/build/robocomp/robocomp/cmake/robocompLocal.cmake
   - sudo apt-get update -qq
   - sudo apt-get install -y slice2cpp
  # - sudo rm /var/lib/apt/lists/lock
@@ -40,5 +39,6 @@ before_install:
  # - sudo rm /var/lib/dpkg/lock
 
 script:
+  - sudo chmod 777 /home/travis/build/robocomp/robocomp/cmake/robocompLocal.cmake
   - export ROBOCOMP="/home/travis/build/robocomp/robocomp"
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DFCL_SUPPORT=1 . && make
